@@ -1,0 +1,53 @@
+* {
+  font-family: "BentonSans", sans-serif;
+}
+
+h1 {
+  font-size: 40px;
+}
+
+p {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+span {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 600px;
+  border-radius: 10px;
+  box-shadow: 0px 5px 35px rgba(0,0,0,.2);
+  margin-top: 30px;
+}
+
+center {
+  margin-top: 6em;
+}
+
+.squareContainer {
+  position: fixed;
+  bottom: 10px;
+  left: calc(50% - 75px);
+}
+
+.squares {
+  display: flex;
+  justify-content: center;
+}
+
+.square {
+  width: 20px;
+  height: 20px;
+  margin: 0px 5px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  border: 1px solid rgba(0,0,0,0);
+
+  transition: border .4s ease-in-out;
+}
+
+.square:hover {
+  border: 1px solid rgba(0,0,0,1);
+}

@@ -2,174 +2,35 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Vibrant Test</title>
+    <title>Automagic Colour Palette</title>
+
+    <link rel="shortcut icon" href="i/favicon.png">
 
     <script src="dist/vibrant.js"></script>
-
-    <style>
-      * {
-        font-family: "BentonSans", sans-serif;
-      }
-
-      h1 {
-        font-size: 40px;
-      }
-
-      p {
-        font-size: 24px;
-        font-weight: bold;
-      }
-
-      span {
-        text-decoration: underline;
-      }
-
-      img {
-        max-width: 600px;
-        border-radius: 10px;
-        box-shadow: 0px 5px 35px rgba(0,0,0,.2);
-        margin-top: -30px;
-      }
-
-      center {
-        margin-top: 6em;
-      }
-
-      .squareContainer {
-        position: fixed;
-        bottom: 10px;
-        left: calc(50% - 75px);
-      }
-
-      .squares {
-        display: flex;
-        justify-content: center;
-      }
-
-      .square {
-        width: 20px;
-        height: 20px;
-        margin: 0px 5px;
-        border-radius: 5px;
-        box-sizing: border-box;
-        border: 1px solid rgba(0,0,0,0);
-
-        transition: border .4s ease-in-out;
-      }
-
-      .square:hover {
-        border: 1px solid rgba(0,0,0,1);
-      }
-
-    </style>
+    <link rel="stylesheet" href="style.css">
 
   </head>
   <body id='body'>
 
     <center id="canvas">
 
-    <div id="text">
-        <h1>Automagic Colour Palette Test</h1>
-        <p>Current mode: <span id="mode">Vibrant &mdash; #000000</span></p>
+      <div id="text">
+          <h1>Automagic Colour Palette Test</h1>
+          <p>Current mode: <span id="mode">Vibrant &mdash; #000000</span></p>
 
-        <div class="squareContainer">
-          <div class="squares">
-            <div class="square" id="square1"></div>
-            <div class="square" id="square2"></div>
-            <div class="square" id="square3"></div>
-            <div class="square" id="square4"></div>
-            <div class="square" id="square5"></div>
+          <div class="squareContainer">
+            <div class="squares">
+              <div class="square" id="square1"></div>
+              <div class="square" id="square2"></div>
+              <div class="square" id="square3"></div>
+              <div class="square" id="square4"></div>
+              <div class="square" id="square5"></div>
+            </div>
           </div>
-        </div>
-    </div>
+      </div>
 
-    <center>
-    <script>
+      <script src="app.js"></script>
 
-      function getRandomInt(max) {
-        return (Math.floor(Math.random() * Math.floor(max)) + 1);
-      }
-
-      var pictureNo = getRandomInt(11);
-      var pictureString = "i/" + pictureNo + ".jpg";
-
-      var colours = [];
-
-      var img = document.createElement('img');
-
-
-
-      img.setAttribute('src', pictureString);
-
-      var src = document.getElementById('body');
-      var canvas = document.getElementById('canvas');
-      var mode = document.getElementById('mode');
-      var text = document.getElementById('text');
-      canvas.appendChild(img);
-
-
-      var square1 = document.getElementById('square1');
-      var square2 = document.getElementById('square2');
-      var square3 = document.getElementById('square3');
-      var square4 = document.getElementById('square4');
-      var square5 = document.getElementById('square5');
-
-      function updateSquareWithID(square_id, input) {
-        square_id.style.backgroundColor = colours[input];
-      }
-
-      img.addEventListener('load', function() {
-        var vibrant = new Vibrant(img);
-        var swatches = vibrant.swatches();
-        console.log("*Here are your colours:*");
-        for (var swatch in swatches) {
-          if (swatches.hasOwnProperty(swatch) && swatches[swatch]) {
-            // Log individual colour to console
-            console.log(swatch, swatches[swatch].getHex());
-
-            // add colours to the global array
-            colours.push(swatches[swatch].getHex());
-          }
-
-
-        }
-
-        src.style.backgroundColor = colours[0];
-        mode.innerHTML = "Vibrant — " + colours[0].toUpperCase();
-
-        updateSquareWithID(square1, 0);
-        updateSquareWithID(square2, 1);
-        updateSquareWithID(square3, 2);
-        updateSquareWithID(square4, 3);
-        updateSquareWithID(square5, 4);
-      });
-
-      document.addEventListener("keypress", function(event) {
-        if (event.keyCode == 49) {
-          src.style.backgroundColor = colours[0];
-          mode.innerHTML = "Vibrant — " + colours[0].toUpperCase();
-          text.style.color = "#222";
-        } else if (event.keyCode == 50) {
-          src.style.backgroundColor = colours[1];
-          mode.innerHTML = "Muted — " + colours[1].toUpperCase();
-          text.style.color = "#FFF";
-        } else if (event.keyCode == 51) {
-          src.style.backgroundColor = colours[2];
-          mode.innerHTML = "DarkVibrant — " + colours[2].toUpperCase();
-          text.style.color = "#FFF";
-        } else if (event.keyCode == 52) {
-          src.style.backgroundColor = colours[3];
-          mode.innerHTML = "DarkMuted — " + colours[3].toUpperCase();
-          text.style.color = "#FFF";
-        } else if (event.keyCode == 53) {
-          src.style.backgroundColor = colours[4];
-          mode.innerHTML = "LightVibrant — " + colours[4].toUpperCase();
-          text.style.color = "#222";
-        } else if (event.keyCode == 82 || event.keyCode == 114) {
-          location.reload();
-        }
-      })
-    </script>
-
+    </center>
   </body>
 </html>
